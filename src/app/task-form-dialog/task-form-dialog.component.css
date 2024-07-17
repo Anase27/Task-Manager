@@ -1,0 +1,14 @@
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.mat-mdc-radio-button .mat-internal-form-field{
+    /* display:none; */
+    color: rgb(110, 237, 169);
+}
+/* #medium-priority-button{
+    color: rgb(231, 236, 83);
+}
+#high-priority-button{
+    color: rgb(237, 131, 110);
+} */

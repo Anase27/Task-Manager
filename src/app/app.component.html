@@ -1,0 +1,26 @@
+<div class="parent-div">
+    <div class="nav-element">
+        <!-- <p><b>Task Manager</b></p> -->
+        <h2>Task Manager</h2>
+        <div class="nav-links">
+          <div>
+            <a href="/">Home</a>
+          </div>
+          <div>
+            <a href="/history">History</a>
+          </div>
+        </div>
+    </div>
+    
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+</div>
+
+
+
+<!-- <h2>My Collection</h2>
+<app-task-collection class="book-collection" [tasks]="(taskCollection$ | async)!" (remove)="onRemove($event)">
+</app-task-collection> -->
+
+<!-- <router-outlet /> -->

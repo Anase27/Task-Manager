@@ -1,0 +1,13 @@
+<div 
+  class="history-item"
+  *ngFor="let history of historyList"
+>
+  <p><b>id: </b>{{history.id}}</p>
+  <p><b>title: </b>{{history.title}}</p>
+  <p><b>timeStamp: </b>{{history.timeStamp}}</p>
+
+  <!-- <button
+    (click)="remove.emit(history.id)"
+    data-test="remove-button"
+  >Remove from Collection</button> -->
+</div>

@@ -1,0 +1,75 @@
+<!-- <div
+  class="book-item"
+  *ngFor="let task of tasks"
+>
+  <p>{{task.volumeInfo.title}}</p><span> by {{task.volumeInfo.authors}}</span>
+  <button
+    (click)="add.emit(task.id)"
+    data-test="add-button"
+  >Add to Collection</button>
+</div> -->
+
+<div class="tasks-section">
+  <div class="task-section-header">
+    <div class="download-button-div">
+      <h2>Tasks</h2>
+      <button mat-raised-button class="download-button" type="button" (click)="downloadTasksAsCSV()">Download csv</button>
+    </div>
+    <div class="task-header-side-bar">
+      <app-task-add-button class="task-add-button" (addTask)="onAddTask($event)"></app-task-add-button>
+      <section>
+          <div class="taks-filter-div" style="display: flex; ">
+            <button mat-button [matMenuTriggerFor]="sorting">Sort By</button>
+            <mat-menu #sorting="matMenu">
+              <button mat-menu-item [matMenuTriggerFor]="dueDate">Due Date</button>
+              <button mat-menu-item [matMenuTriggerFor]="status">Status</button>
+              <button mat-menu-item [matMenuTriggerFor]="priority">Priority</button>
+            </mat-menu>
+            <mat-menu #dueDate="matMenu">
+              <button mat-menu-item (click)="onSortByEarliestDueDateFirst()">Earliest</button>
+              <button mat-menu-item (click)="onSortByFarthestDueDateFirst()">Farthest</button>
+            </mat-menu>
+            <mat-menu #status="matMenu">
+              <button mat-menu-item (click)="onSortByCompletedFirst()">Completed</button>
+              <button mat-menu-item (click)="onSortByPendingFirst()">Pending</button>
+            </mat-menu>
+            <mat-menu #priority="matMenu">
+              <button mat-menu-item (click)="onSortByDecreasingPriority()">Highest first</button>
+              <button mat-menu-item (click)="onSortByIncreasingPriority()" >Lowest first</button>
+            </mat-menu>
+            <!-- <button mat-button [matMenuTriggerFor]="sorting">Sort By</button>  -->
+          </div>
+      </section>
+    </div>
+  </div>
+    
+  <div class="tasks-div-container">
+    <div
+      class="task-item "
+      *ngFor="let task of (tasks$ | async)"
+    >
+    <div class="task-card " [id]="task.status">
+      <!-- <p><b>id: </b>{{task.id}}</p> -->
+      <section class="task-details">
+        <span class="priority-color" [id]="task.priorityLevel"></span>
+          <section class="">
+            <mat-checkbox class="" [checked]="task.status==='completed'" (change)="onStatusChange(task,$event)" ></mat-checkbox>
+          </section >
+          <p>{{task.name}} </p>
+          <!-- <p><b>description: </b>{{task.description}}</p> -->
+          <p> <b> DueBy: </b>{{task.duedate.split(',')[0]}}</p>
+          <p><b>Prioirity: </b>{{task.priorityLevel}}</p>
+        </section>
+        <!-- <p><b>status: </b>{{task.status}}</p> -->
+        <div class="task-buttons-container">
+          <app-task-detail-button [task]="task"></app-task-detail-button>
+          <button
+            (click)="onRemoveTask(task)"
+            data-test="remove-button" class="remove-button task-button"
+          ><mat-icon>delete</mat-icon></button>
+          <app-task-edit-button [task]="task" (editTask)="onEditTask($event)"></app-task-edit-button>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
